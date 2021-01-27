@@ -19,6 +19,8 @@ function LoadingWidget() {
 }
 
 function QuestionWidget({ question, totalQuestions, questionIndex }) {
+  const questionId = `question__${questionIndex}`;
+
   return (
     <Widget>
       <Widget.Header>
@@ -43,7 +45,14 @@ function QuestionWidget({ question, totalQuestions, questionIndex }) {
 
             return (
               <Widget.Topic htmlFor={alternativeId} as="label">
-                <input id={alternativeId} type="radio" />
+                {
+                  <input
+                    //style={{display: 'none'}}
+                    id={alternativeId}
+                    type="radio"
+                    name={questionId}
+                  />
+                }
                 {alternative}
               </Widget.Topic>
             );
