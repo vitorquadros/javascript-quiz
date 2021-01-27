@@ -18,11 +18,11 @@ function LoadingWidget() {
   );
 }
 
-function QuestionWidget({ question, totalQuestions }) {
+function QuestionWidget({ question, totalQuestions, questionIndex }) {
   return (
     <Widget>
       <Widget.Header>
-        <h3>Pergunta 1 de {` ${totalQuestions}`}</h3>
+        <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
       </Widget.Header>
       <img
         alt="Descrição"
@@ -37,7 +37,18 @@ function QuestionWidget({ question, totalQuestions }) {
       <Widget.Content>
         <h2>{question.title}</h2>
         <p>{question.description}</p>
+        <form>
+          {question.alternatives.map((alternative, index) => {
+            const alternativeId = `alternative__${index}`;
 
+            return (
+              <label htmlFor={alternativeId}>
+                {alternative}
+                <input id={alternativeId} type="radio" />
+              </label>
+            );
+          })}
+        </form>
         <Button>Confirmar</Button>
       </Widget.Content>
     </Widget>
@@ -45,14 +56,21 @@ function QuestionWidget({ question, totalQuestions }) {
 }
 
 const QuizPage = () => {
-  const question = db.questions[0];
+  const questionIndex = 1;
   const totalQuestions = db.questions.length;
+  const question = db.questions[questionIndex];
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <QuestionWidget question={question} totalQuestions={totalQuestions} />
+
+        <QuestionWidget
+          question={question}
+          totalQuestions={totalQuestions}
+          questionIndex={questionIndex}
+        />
+
         <LoadingWidget />
       </QuizContainer>
       <GitHubCorner projectUrl="" />
