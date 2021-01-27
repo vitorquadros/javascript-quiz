@@ -42,10 +42,10 @@ function QuestionWidget({ question, totalQuestions, questionIndex }) {
             const alternativeId = `alternative__${index}`;
 
             return (
-              <label htmlFor={alternativeId}>
-                {alternative}
+              <Widget.Topic htmlFor={alternativeId} as="label">
                 <input id={alternativeId} type="radio" />
-              </label>
+                {alternative}
+              </Widget.Topic>
             );
           })}
         </form>
@@ -56,7 +56,7 @@ function QuestionWidget({ question, totalQuestions, questionIndex }) {
 }
 
 const QuizPage = () => {
-  const questionIndex = 1;
+  const questionIndex = 0;
   const totalQuestions = db.questions.length;
   const question = db.questions[questionIndex];
 
