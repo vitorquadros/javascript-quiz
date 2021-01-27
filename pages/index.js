@@ -5,6 +5,7 @@ import Widget from "../src/components/Widget.js";
 import Footer from "../src/components/Footer.js";
 import GitHubCorner from "../src/components/GitHubCorner.js";
 import QuizBackground from "../src/components/QuizBackground.js";
+import Input from "../src/components/Input.js";
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -42,13 +43,14 @@ export default function Home() {
                 router.push(`/quiz?name=${name}`);
               }}
             >
-              <input
+              <Input
+                name="nomeDoUsuario"
                 placeholder="Seu nome"
                 type="text"
                 onChange={({ target }) => setName(target.value)}
               />
               <button type="submit" disabled={name.length === 0}>
-                Jogar {name}
+                Jogar
               </button>
             </form>
           </Widget.Content>
