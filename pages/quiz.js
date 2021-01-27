@@ -8,6 +8,16 @@ import QuizContainer from "../src/components/QuizContainer.js";
 import Button from "../src/components/Button.js";
 import QuizLogo from "../src/components/QuizLogo.js";
 
+function LoadingWidget() {
+  return (
+    <Widget>
+      <Widget.Header>Carregando...</Widget.Header>
+
+      <Widget.Content>[Desafio do Loading]</Widget.Content>
+    </Widget>
+  );
+}
+
 const QuizPage = () => {
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -34,6 +44,7 @@ const QuizPage = () => {
             <Button>Confirmar</Button>
           </Widget.Content>
         </Widget>
+        <LoadingWidget />
       </QuizContainer>
       <GitHubCorner projectUrl="" />
     </QuizBackground>
