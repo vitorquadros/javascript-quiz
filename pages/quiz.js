@@ -18,32 +18,40 @@ function LoadingWidget() {
   );
 }
 
+function QuestionWidget({ question }) {
+  return (
+    <Widget>
+      <Widget.Header>
+        <h3>Pergunta 1 de {` ${db.questions.length}`}</h3>
+      </Widget.Header>
+      <img
+        alt="Descrição"
+        style={{
+          width: "100%",
+          height: "150px",
+          objectFit: "cover",
+        }}
+        src={question.image}
+      />
+
+      <Widget.Content>
+        <h2>{question.title}</h2>
+        <p>{question.description}</p>
+
+        <Button>Confirmar</Button>
+      </Widget.Content>
+    </Widget>
+  );
+}
+
 const QuizPage = () => {
+  const question = db.questions[0];
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
-          <Widget.Header>
-            <h3>Pergunta 1 de {` ${db.questions.length}`}</h3>
-          </Widget.Header>
-          <img
-            alt="Descrição"
-            style={{
-              width: "100%",
-              height: "150px",
-              objectFit: "cover",
-            }}
-            src="https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif"
-          />
-
-          <Widget.Content>
-            <h2>Titulo</h2>
-            <p>Descrição</p>
-
-            <Button>Confirmar</Button>
-          </Widget.Content>
-        </Widget>
+        <QuestionWidget question={question} />
         <LoadingWidget />
       </QuizContainer>
       <GitHubCorner projectUrl="" />
