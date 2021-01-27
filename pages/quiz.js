@@ -18,11 +18,11 @@ function LoadingWidget() {
   );
 }
 
-function QuestionWidget({ question }) {
+function QuestionWidget({ question, totalQuestions }) {
   return (
     <Widget>
       <Widget.Header>
-        <h3>Pergunta 1 de {` ${db.questions.length}`}</h3>
+        <h3>Pergunta 1 de {` ${totalQuestions}`}</h3>
       </Widget.Header>
       <img
         alt="Descrição"
@@ -46,12 +46,13 @@ function QuestionWidget({ question }) {
 
 const QuizPage = () => {
   const question = db.questions[0];
+  const totalQuestions = db.questions.length;
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
-        <QuestionWidget question={question} />
+        <QuestionWidget question={question} totalQuestions={totalQuestions} />
         <LoadingWidget />
       </QuizContainer>
       <GitHubCorner projectUrl="" />
