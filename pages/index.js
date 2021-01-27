@@ -9,6 +9,7 @@ import QuizBackground from "../src/components/QuizBackground.js";
 import QuizContainer from "../src/components/QuizContainer.js";
 import Input from "../src/components/Input.js";
 import Button from "../src/components/Button.js";
+import QuizLogo from "../src/components/QuizLogo.js";
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -24,6 +25,7 @@ export default function Home() {
     <>
       <QuizBackground backgroundImage={db.bg}>
         <QuizContainer>
+          <QuizLogo />
           <Widget>
             <Widget.Header>
               <h1>Teste</h1>
