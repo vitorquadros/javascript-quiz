@@ -6,6 +6,7 @@ import Footer from "../src/components/Footer.js";
 import GitHubCorner from "../src/components/GitHubCorner.js";
 import QuizBackground from "../src/components/QuizBackground.js";
 import Input from "../src/components/Input.js";
+import Button from "../src/components/Button.js";
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -49,9 +50,9 @@ export default function Home() {
                 type="text"
                 onChange={({ target }) => setName(target.value)}
               />
-              <button type="submit" disabled={name.length === 0}>
+              <Button type="submit" disabled={name.length === 0}>
                 Jogar
-              </button>
+              </Button>
             </form>
           </Widget.Content>
         </Widget>

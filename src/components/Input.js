@@ -22,10 +22,6 @@ const Input = ({ onChange, placeholder, ...props }) => {
   );
 };
 
-Input.defaultProps = {
-  value: "",
-};
-
 Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
