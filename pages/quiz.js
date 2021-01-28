@@ -72,8 +72,9 @@ const screenStates = {
 
 const QuizPage = () => {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
-  const questionIndex = 0;
   const totalQuestions = db.questions.length;
+  const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
   React.useEffect(() => {
