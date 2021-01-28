@@ -7,6 +7,7 @@ import QuizBackground from "../src/components/QuizBackground.js";
 import QuizContainer from "../src/components/QuizContainer.js";
 import Button from "../src/components/Button.js";
 import QuizLogo from "../src/components/QuizLogo.js";
+import Card from "../src/components/Card";
 
 function LoadingWidget() {
   return (
@@ -23,6 +24,9 @@ function QuestionWidget({
   totalQuestions,
   questionIndex,
   handleSubmit,
+  setQuestionRadio,
+  next,
+  rightAwnser,
 }) {
   const questionId = `question__${questionIndex}`;
 
@@ -65,14 +69,17 @@ function QuestionWidget({
                     id={alternativeId}
                     type="radio"
                     name={questionId}
+                    onChange={() => setQuestionRadio(index + 1)}
+                    disabled={next === true}
                   />
                 }
                 {alternative}
               </Widget.Topic>
             );
           })}
-
-          <Button>Confirmar</Button>
+          {next ? <Button>Proxima</Button> : <Button>Confirmar</Button>}
+          {rightAwnser === true && <p>Você marcou 1 ponto.</p>}
+          {rightAwnser === false && <p>Errou!</p>}
         </form>
       </Widget.Content>
     </Widget>
@@ -91,6 +98,10 @@ const QuizPage = () => {
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
+  const [questionRadio, setQuestionRadio] = React.useState(0);
+  const [next, setNext] = React.useState(null);
+  const [points, setPoints] = React.useState(0);
+  const [rightAwnser, setRightAwnser] = React.useState(null);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -100,11 +111,26 @@ const QuizPage = () => {
 
   function handleSubmit() {
     const nextQuestion = questionIndex + 1;
-    if (nextQuestion < totalQuestions) {
-      setCurrentQuestion(nextQuestion);
+
+    if (next === true) {
+      if (nextQuestion < totalQuestions) {
+        setCurrentQuestion(nextQuestion);
+      } else {
+        setScreenState(screenStates.RESULTS);
+      }
+
+      setNext(false);
+      setRightAwnser(null);
     } else {
-      setScreenState(screenStates.RESULTS);
+      setNext(true);
+      if (question.answer === questionRadio) {
+        setRightAwnser(true);
+      } else {
+        setRightAwnser(false);
+      }
     }
+    if (rightAwnser === true) setPoints((prev) => prev + 1);
+    console.log(points);
   }
 
   return (
@@ -118,11 +144,15 @@ const QuizPage = () => {
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
             handleSubmit={handleSubmit}
+            setQuestionRadio={setQuestionRadio}
+            next={next}
+            rightAwnser={rightAwnser}
+            // next={next}
           />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
         {screenState === screenStates.RESULTS && (
-          <div>Você acertou x questões</div>
+          <Card>Você acertou {points} questões.</Card>
         )}
       </QuizContainer>
       <GitHubCorner projectUrl="" />

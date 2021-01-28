@@ -5,20 +5,31 @@
   "questions": [
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "title": "Questão 1",
       "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "answer": 1,
+      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
     },
     {
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
+      "title": "Questão 2",
       "description": "Faz tempo em haha",
-      "answer": 0,
-      "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
-      ]
+      "answer": 2,
+      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+    },
+    {
+      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+      "title": "Questão 3",
+      "description": "Essa é pra aquecer",
+      "answer": 3,
+      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+    },
+    {
+      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+      "title": "Questão 4",
+      "description": "Essa é pra aquecer",
+      "answer": 4,
+      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
     }
   ],
   "external": [""],
