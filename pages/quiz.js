@@ -46,6 +46,9 @@ function QuestionWidget({
         }}
         src={question.image}
       />
+      {next === true && rightAnswer === true && (
+        <p className={styles.anime}>+1 Ponto</p>
+      )}
 
       <Widget.Content>
         <h2>{question.title}</h2>
@@ -91,8 +94,8 @@ function QuestionWidget({
             );
           })}
           {next ? <Button>Proxima</Button> : <Button>Confirmar</Button>}
-          {rightAnswer === true && <Paragrafo>Você ganhou 1 ponto.</Paragrafo>}
-          {rightAnswer === false && <Paragrafo>Errou!</Paragrafo>}
+          {/* {rightAnswer === true && <Paragrafo>Você ganhou 1 ponto.</Paragrafo>}
+          {rightAnswer === false && <Paragrafo>Errou!</Paragrafo>} */}
         </form>
       </Widget.Content>
     </Widget>
@@ -165,7 +168,9 @@ const QuizPage = () => {
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
         {screenState === screenStates.RESULTS && (
-          <Widget>Você acertou {points} questões.</Widget>
+          <Widget>
+            <Widget.Content>Sua pontuação final foi {points}.</Widget.Content>
+          </Widget>
         )}
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/VitorQuadros/alura-quizz" />

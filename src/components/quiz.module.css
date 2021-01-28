@@ -5,3 +5,20 @@
 .teste2 {
   color: green;
 }
+
+.anime {
+  font-size: 2rem !important;
+  position: absolute;
+  top: 80px;
+  left: 95px;
+  animation: animeA 1.5s forwards;
+}
+
+@keyframes animeA {
+  0% {
+    transform: scale(0.3);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
