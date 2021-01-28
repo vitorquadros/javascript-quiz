@@ -64,23 +64,40 @@ function QuestionWidget({ question, totalQuestions, questionIndex }) {
   );
 }
 
+const screenStates = {
+  QUIZ: "QUIZ",
+  LOADING: "LOADING",
+  RESULTS: "RESULTS",
+};
+
 const QuizPage = () => {
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const questionIndex = 0;
   const totalQuestions = db.questions.length;
   const question = db.questions[questionIndex];
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ);
+    }, 1 * 1000);
+  }, []);
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo />
 
-        <QuestionWidget
-          question={question}
-          totalQuestions={totalQuestions}
-          questionIndex={questionIndex}
-        />
-
-        <LoadingWidget />
+        {screenState === screenStates.QUIZ && (
+          <QuestionWidget
+            question={question}
+            totalQuestions={totalQuestions}
+            questionIndex={questionIndex}
+          />
+        )}
+        {screenState === screenStates.LOADING && <LoadingWidget />}
+        {screenState === screenStates.RESULTS && (
+          <div>Você acertou x questões</div>
+        )}
       </QuizContainer>
       <GitHubCorner projectUrl="" />
     </QuizBackground>
