@@ -18,7 +18,12 @@ function LoadingWidget() {
   );
 }
 
-function QuestionWidget({ question, totalQuestions, questionIndex }) {
+function QuestionWidget({
+  question,
+  totalQuestions,
+  questionIndex,
+  handleSubmit,
+}) {
   const questionId = `question__${questionIndex}`;
 
   return (
@@ -39,7 +44,7 @@ function QuestionWidget({ question, totalQuestions, questionIndex }) {
       <Widget.Content>
         <h2>{question.title}</h2>
         <p>{question.description}</p>
-        <form>
+        <form onSubmit={handleSubmit}>
           {question.alternatives.map((alternative, index) => {
             const alternativeId = `alternative__${index}`;
 
@@ -83,6 +88,16 @@ const QuizPage = () => {
     }, 1 * 1000);
   }, []);
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    const nextQuestion = questionIndex + 1;
+    if (nextQuestion < totalQuestions) {
+      setCurrentQuestion(questionIndex + 1);
+    } else {
+      setScreenState(screenStates.RESULTS);
+    }
+  }
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
@@ -93,6 +108,7 @@ const QuizPage = () => {
             question={question}
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
+            onSubmit={handleSubmit}
           />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
