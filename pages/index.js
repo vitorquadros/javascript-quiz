@@ -28,7 +28,7 @@ export default function Home() {
           <QuizLogo />
           <Widget>
             <Widget.Header>
-              <h1>Teste</h1>
+              <h1>Teste seus conhecimentos</h1>
             </Widget.Header>
             <Widget.Content>
               <form
@@ -52,18 +52,13 @@ export default function Home() {
 
           <Widget>
             <Widget.Content>
-              <h1>Teste 2</h1>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Aspernatur ea earum modi veniam vero minus accusantium quas
-                dolores molestiae repudiandae velit et maxime quam,
-                reprehenderit possimus provident id nesciunt sit.
-              </p>
+              <h1>Tema</h1>
+              <p>JavaScript</p>
             </Widget.Content>
           </Widget>
           <Footer />
         </QuizContainer>
-        <GitHubCorner projectUrl="" />
+        <GitHubCorner projectUrl="https://github.com/VitorQuadros/alura-quizz" />
       </QuizBackground>
     </>
   );
