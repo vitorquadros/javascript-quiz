@@ -1,5 +1,6 @@
 import React from "react";
 import db from "../db.json";
+import styles from "../src/components/quiz.module.css";
 
 import Widget from "../src/components/Widget.js";
 import GitHubCorner from "../src/components/GitHubCorner.js";
@@ -8,6 +9,7 @@ import QuizContainer from "../src/components/QuizContainer.js";
 import Button from "../src/components/Button.js";
 import QuizLogo from "../src/components/QuizLogo.js";
 import Card from "../src/components/Card";
+import Paragrafo from "../src/components/Paragrafo";
 
 function LoadingWidget() {
   return (
@@ -26,10 +28,10 @@ function QuestionWidget({
   handleSubmit,
   setQuestionRadio,
   next,
-  rightAwnser,
+  rightAnswer,
+  questionRadio,
 }) {
   const questionId = `question__${questionIndex}`;
-
   return (
     <Widget>
       <Widget.Header>
@@ -56,12 +58,23 @@ function QuestionWidget({
         >
           {question.alternatives.map((alternative, index) => {
             const alternativeId = `alternative__${index}`;
+            console.log(question.answer, index + 1);
 
             return (
               <Widget.Topic
                 htmlFor={alternativeId}
                 key={alternativeId}
                 as="label"
+                className={`${
+                  next === true &&
+                  rightAnswer === false &&
+                  questionRadio === index + 1 &&
+                  styles.teste
+                } ${
+                  next === true &&
+                  question.answer === index + 1 &&
+                  styles.teste2
+                }`}
               >
                 {
                   <input
@@ -78,8 +91,8 @@ function QuestionWidget({
             );
           })}
           {next ? <Button>Proxima</Button> : <Button>Confirmar</Button>}
-          {rightAwnser === true && <p>Você marcou 1 ponto.</p>}
-          {rightAwnser === false && <p>Errou!</p>}
+          {rightAnswer === true && <Paragrafo>Você ganhou 1 ponto.</Paragrafo>}
+          {rightAnswer === false && <Paragrafo>Errou!</Paragrafo>}
         </form>
       </Widget.Content>
     </Widget>
@@ -101,7 +114,7 @@ const QuizPage = () => {
   const [questionRadio, setQuestionRadio] = React.useState(0);
   const [next, setNext] = React.useState(null);
   const [points, setPoints] = React.useState(0);
-  const [rightAwnser, setRightAwnser] = React.useState(null);
+  const [rightAnswer, setRightAnswer] = React.useState(null);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -120,16 +133,16 @@ const QuizPage = () => {
       }
 
       setNext(false);
-      setRightAwnser(null);
+      setRightAnswer(null);
     } else {
       setNext(true);
       if (question.answer === questionRadio) {
-        setRightAwnser(true);
+        setRightAnswer(true);
       } else {
-        setRightAwnser(false);
+        setRightAnswer(false);
       }
     }
-    if (rightAwnser === true) setPoints((prev) => prev + 1);
+    if (rightAnswer === true) setPoints((prev) => prev + 1);
     console.log(points);
   }
 
@@ -146,8 +159,8 @@ const QuizPage = () => {
             handleSubmit={handleSubmit}
             setQuestionRadio={setQuestionRadio}
             next={next}
-            rightAwnser={rightAwnser}
-            // next={next}
+            rightAnswer={rightAnswer}
+            questionRadio={questionRadio}
           />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
