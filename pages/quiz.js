@@ -165,10 +165,10 @@ const QuizPage = () => {
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
         {screenState === screenStates.RESULTS && (
-          <Card>Você acertou {points} questões.</Card>
+          <Widget>Você acertou {points} questões.</Widget>
         )}
       </QuizContainer>
-      <GitHubCorner projectUrl="" />
+      <GitHubCorner projectUrl="https://github.com/VitorQuadros/alura-quizz" />
     </QuizBackground>
   );
 };

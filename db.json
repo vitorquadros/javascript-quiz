@@ -5,31 +5,47 @@
   "questions": [
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Questão 1",
-      "description": "Essa é pra aquecer",
+      "title": "O que o comando console.table() faz?",
+      "description": "E ai?",
       "answer": 1,
-      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+      "alternatives": [
+        "Mostra os dados no console em forma de tabela",
+        "Permite adicionar estilos à saida dos dados no console",
+        "Esse comando não existe"
+      ]
     },
     {
       "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Questão 2",
-      "description": "Faz tempo em haha",
+      "title": "O valor NULL é de que tipo?",
+      "description": "Por essa você não esperava",
       "answer": 2,
-      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+      "alternatives": ["int", "object", "boolean", "undefined"]
     },
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Questão 3",
-      "description": "Essa é pra aquecer",
-      "answer": 3,
-      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+      "title": "const numero = 1_000_00; Isso é válido?",
+      "description": "Vamos à pratica!",
+      "answer": 1,
+      "alternatives": ["Sim", "Não"]
     },
     {
       "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Questão 4",
-      "description": "Essa é pra aquecer",
-      "answer": 4,
-      "alternatives": ["Resposta 1", "Resposta 2", "Resposta 3", "Resposta 4"]
+      "title": "Qual vai ser a saida?",
+      "description": "var numeros = [1, 2, 3, 4, 5, 6, 7]; numeros.length = 3; console.log(numeros)",
+      "answer": 2,
+      "alternatives": [
+        "[1, 2, 3, 4, 5, 6, 7]",
+        "[1, 2, 3]",
+        "[5, 6, 7]",
+        "Erro na linha 2"
+      ]
+    },
+    {
+      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+      "title": "100 == '100'",
+      "description": "?",
+      "answer": 1,
+      "alternatives": ["True", "False"]
     }
   ],
   "external": [""],
