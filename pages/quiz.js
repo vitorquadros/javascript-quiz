@@ -44,12 +44,21 @@ function QuestionWidget({
       <Widget.Content>
         <h2>{question.title}</h2>
         <p>{question.description}</p>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleSubmit();
+          }}
+        >
           {question.alternatives.map((alternative, index) => {
             const alternativeId = `alternative__${index}`;
 
             return (
-              <Widget.Topic htmlFor={alternativeId} as="label">
+              <Widget.Topic
+                htmlFor={alternativeId}
+                key={alternativeId}
+                as="label"
+              >
                 {
                   <input
                     //style={{display: 'none'}}
@@ -62,8 +71,9 @@ function QuestionWidget({
               </Widget.Topic>
             );
           })}
+
+          <Button>Confirmar</Button>
         </form>
-        <Button>Confirmar</Button>
       </Widget.Content>
     </Widget>
   );
@@ -88,11 +98,10 @@ const QuizPage = () => {
     }, 1 * 1000);
   }, []);
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     const nextQuestion = questionIndex + 1;
     if (nextQuestion < totalQuestions) {
-      setCurrentQuestion(questionIndex + 1);
+      setCurrentQuestion(nextQuestion);
     } else {
       setScreenState(screenStates.RESULTS);
     }
@@ -108,7 +117,7 @@ const QuizPage = () => {
             question={question}
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
-            onSubmit={handleSubmit}
+            handleSubmit={handleSubmit}
           />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
